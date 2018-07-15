@@ -1,0 +1,26 @@
+.search-text{
+    color: white;
+    padding: 15px;
+}
+.results{
+    height: calc(100vh - 170px);
+    width: 100%;
+    padding: 10px;
+    display: flex;
+}
+.loading-spinner{
+    height: 100%;
+    width: 100%;
+    color: white;
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+}
+.loading{
+    background: blue;
+    border-radius: 50%;
+}

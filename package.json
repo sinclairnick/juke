@@ -1,0 +1,26 @@
+{
+  "name": "juke",
+  "version": "0.0.1",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "node build/build.js"
+  },
+  "author": "klauz",
+  "license": "ISC",
+  "description": "GUI for internet music",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "electron": "^2.0.4",
+    "format-duration": "^1.1.0",
+    "home-path": "^1.0.6",
+    "lodash": "^4.17.10",
+    "mime-types": "^2.1.18",
+    "music-metadata": "^2.3.1",
+    "rimraf": "^2.6.2",
+    "stream-to-blob-url": "^2.1.1",
+    "torrent-stream": "^1.0.4",
+    "vuedraggable": "^2.16.0",
+    "webtorrent": "^0.100.0"
+  }
+}
