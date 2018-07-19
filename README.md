@@ -6,6 +6,7 @@ torrent music streaming app
 juke searches various torrenting websites and scrapes the results, providing the details of the music torrent along with its metadata. The user can then stream and download the music through an itunes/spotify-like interface.
 
 This was made for demo purposes only. Please support artists and the music industry.
+
 ---
 
 Short-term to-do list:
