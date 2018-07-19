@@ -15,7 +15,5 @@ Short-term to-do list:
 * enable renaming playlists
 * optimize cached song downloads and decluttering storage
 
-...
-
 Long-term to-do list:
 * Set up database functionality for cloud-based playlists, libraries and improved search/metadata capabilities
