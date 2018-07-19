@@ -32,7 +32,7 @@
         <!-- Nav Bar:
              "Juke", "browse", "playlists", [search], "Account" -->
         <div class="nav vert-center">
-        
+
             <nav v-if="page!=='account'">
                 <ul class="vert-center" id="navform">
                     <li id="logo" v-on:click="page = 'home', albumIsSelected = false">
@@ -43,7 +43,9 @@
                     </li>
                     <li class="nav-playlist-button">
                         <div>
-                            <p v-on:click="page = 'playlists', albumIsSelected = false">playlists <i class="fas fa-caret-down"></i></p>
+                            <p v-on:click="page = 'playlists', albumIsSelected = false">playlists
+                                <i class="fas fa-caret-down"></i>
+                            </p>
                         </div>
                         <playlist-nav :playlists="playlists" v-if="playlists.length > 0"></playlist-nav>
                     </li>
@@ -58,23 +60,16 @@
                 <div class="right-nav vert-center" v-on:mouseleave="showQueue = false, showHistory = false">
                     <ul id="nav-ul">
                         <li>
-                            <now-playing-art v-if="nowPlaying" 
-                            :cover-path="nowPlaying.album.cover" 
-                            :playing="playing">
+                            <now-playing-art v-if="nowPlaying" :cover-path="nowPlaying.album.cover" :playing="playing">
                             </now-playing-art>
                         </li>
                         <li>
-                            <now-playing v-if="nowPlaying" 
-                            :song="nowPlaying.name || null" 
-                            :artist="nowPlaying.artist || null" 
-                            :context-name="nowPlaying.album.title || null">
+                            <now-playing v-if="nowPlaying" :song="nowPlaying.name || null" :artist="nowPlaying.artist || null" :context-name="nowPlaying.album.title || null">
                             </now-playing>
                         </li>
                         <li>
-                            <img src="./img/queue-logo.png" class="list-logo" alt="Queue"
-                            draggable="false"
-                            v-on:dragenter.passive="dragenter" v-on:dragleave.passive="dragleave" v-on:dragover.prevent v-on:drop.passive="drop"
-                            v-on:mouseenter="showQueue = true, showHistory = false">
+                            <img src="./img/queue-logo.png" class="list-logo" alt="Queue" draggable="false" v-on:dragenter.passive="dragenter" v-on:dragleave.passive="dragleave"
+                                v-on:dragover.prevent v-on:drop.passive="drop" v-on:mouseenter="showQueue = true, showHistory = false">
                         </li>
                         <li>
                             <img draggable="false" src="./img/history-logo.png" class="list-logo" alt="History" v-on:mouseenter="showHistory = true, showQueue = false">
@@ -115,263 +110,241 @@
             <div class="player-content">
                 <audio id="vinyl-noise" src="./media/vinyl-noise.mp3" type="audio/mpeg" data-default="0.6"></audio>
 
-                <audio 
-                data-default="1.0"
-                ref="audio"
-                autoplay 
-                id="now-playing" 
-                onplaying="global.juke.onPlaying()" 
-                onpause="global.juke.onPause()"
-                onstalled="global.juke.onStall()" 
-                onended="global.juke.playNext()"
-                ontimeupdate="global.juke.trackProgress = this.currentTime * 100 / global.juke.nowPlaying.duration">
+                <audio data-default="1.0" ref="audio" autoplay id="now-playing" onplaying="global.juke.onPlaying()" onpause="global.juke.onPause()"
+                    onstalled="global.juke.onStall()" onended="global.juke.playNext()" ontimeupdate="global.juke.trackProgress = this.currentTime * 100 / global.juke.nowPlaying.duration">
                 </audio>
 
-                    
-                    <div class="left-player">
-                        <prev-track
-                        v-if="history.length > 0"
-                        :title="history[history.length -1].name"
-                        :artist="history[history.length -1].album.artist">
-                        </prev-track>
+
+                <div class="left-player">
+                    <prev-track v-if="history.length > 0" :title="history[history.length -1].name" :artist="history[history.length -1].album.artist">
+                    </prev-track>
+                </div>
+
+
+
+                <div class="player-controls">
+
+                    <div class="prev" v-on:click="playPrev">
+                        <i class="fas fa-caret-left"></i>
                     </div>
 
+                    <div class="play-pause" v-on:click="pauseUnpause">
 
 
-                        <div class="player-controls">
+                        <i v-if="playing" class="fas fa-pause playing"></i>
+                        <i v-else class="fas fa-play paused"></i>
 
-                            <div class="prev" v-on:click="playPrev">
-                                <i class="fas fa-caret-left"></i>
-                            </div>
+                    </div>
 
-                            <div class="play-pause" v-on:click="pauseUnpause">
-
-
-                                <i v-if="playing" class="fas fa-pause playing"></i>
-                                <i v-else class="fas fa-play paused"></i>
-
-                            </div>
-
-                            <div class="next" v-on:click="playNext" >
-                                <i class="fas fa-caret-right"></i>
-                            </div>
-                        </div>
-
-
-
-                        <div class="right-player">
-                            <next-track
-                            v-if="queue.length > 0"
-                            :title="queue[0].name"
-                            :artist="queue[0].artists && queue[0].artists[0]">
-                            </next-track>
-                        </div>
-
-
-
+                    <div class="next" v-on:click="playNext">
+                        <i class="fas fa-caret-right"></i>
+                    </div>
                 </div>
+
+
+
+                <div class="right-player">
+                    <next-track v-if="queue.length > 0" :title="queue[0].name" :artist="queue[0].artists && queue[0].artists[0]">
+                    </next-track>
+                </div>
+
+
 
             </div>
 
-
-            <!-- Main Content of the page -->
-            <div class="main">
-
-                <!-- Home Page -->
-                <div v-if="page==='home'" class="home">
-                    <div class="top row">
-                        <div class="module featured">
-                            <h4>
-                                featured
-                            </h4>
-                            <hr>
-                            <div class="featured-albums" id="featured-albums">
-                                <album-li 
-                                v-for="(album, index) in featuredArray" 
-                                :key="album.id" 
-                                :artist="album.artist" 
-                                :album="album.title || album.linkName"
-                                :cover-path="album.cover" 
-                                :link="album.link" 
-                                :flac="album.flac" 
-                                :health="album.health"
-                                :songs="album.songs"
-                                :album-object="album">
-                                </album-li>
-                            </div>
-                        </div>
+        </div>
 
 
-                            <div class="module events">
-                                events
-                                <hr>
-                                <div class="album-view">
-    
-                                </div>
-                            </div>
+        <!-- Main Content of the page -->
+        <div class="main">
 
-
-                    </div>
-
-                        
-                        <div class="row">
-                            <div class="module favourites">
-                                <!-- favourites
-                                <hr>
-                                <div class="album-view">
-    
-                                </div> -->
-                                <h3>problems with loading?</h3>
-                                <hr>
-                                <br>
-                                <p>
-                                    Juke does not use a server to play music, like Youtube or Spotify do. Because of this, it will never go down.
-                                    But this also means there can be a delay <b><u>when playing a song for this first time</u></b>.
-                                    <br>
-                                    <br>
-                                    Download speed is indicated by the health ( <i class="fas fa-plus-square"></i> ) symbol, where higher health means faster downloads.
-                                    Anything below <i class="fas fa-plus-square"></i> 30 will require patience. In this case, you should save the album and come back to it later.
-                                </p>
-                            </div>
-                            <div class="module recents">
-                                <!-- recents
-                                <hr>
-                                <div class="album-view">
-    
-                                </div> -->
-                                <h3>legal</h3>
-                                <hr>
-                                <br>
-                                <p>
-                                    As this application does not possess or distribute illegal content, it is perfectly legal. However, downloading illegal content is considered illegal in most countries.
-                                   <b><u>Use responsibly and support artists by buying their music</u></b>.
-                                </p>
-                                <br>
-                                <br>
-                                <h3>please note</h3>
-                                <hr>
-                                <p>Since this is only the alpha version of juke, <b><u>expect some bugs</u></b>. These bugs will slowly get fixed as they become known.</p>
-                            </div>
-                        </div>
-
-                </div>
-
-
-                <!-- Search Page -->
-                <div v-if="page ==='search'" class="searchPage">
-                    <h1 class="search-text">{{searchQuery}}</h1>
-                    <div class="module results">
-                        <div class="album-view" v-on:scroll="scrollHandler">
-                            <!-- <div class="loading-spinner" v-show="searchArray.length < 1">
-                                <div class="loading">
-                                    <h1>Loading</h1>
-                                </div>
-                            </div> -->
-                            <album-li v-for="(album, index) in sortedSearchArray" :key="album.id" :artist="album.artist" :album="album.title || album.linkName"
+            <!-- Home Page -->
+            <div v-if="page==='home'" class="home">
+                <div class="top row">
+                    <div class="module featured">
+                        <h4>
+                            featured
+                        </h4>
+                        <hr>
+                        <div class="featured-albums" id="featured-albums">
+                            <album-li v-for="(album, index) in featuredArray" :key="album.id" :artist="album.artist" :album="album.title || album.linkName"
                                 :cover-path="album.cover" :link="album.link" :flac="album.flac" :health="album.health" :songs="album.songs"
                                 :album-object="album">
                             </album-li>
                         </div>
+                    </div>
 
+
+                    <div class="module events">
+                        events
+                        <hr>
+                        <div class="album-view">
+
+                        </div>
                     </div>
 
 
                 </div>
 
 
-                <!-- Browse Albums page -->
-                <div v-if="page==='browse'" class="browse">
-                    <div class="module">
-                        <div class="album-view" v-if="savedAlbums.length > 0">
-                            <album-li v-for="(album, index) in savedAlbums" :key="album.id" :artist="album.artist" :album="album.title || album.linkName"
-                            :cover-path="album.cover" :link="album.link" :flac="album.flac" :health="album.health" :songs="album.songs"
-                            :album-object="album">
-                            </album-li>
-                        </div>
-                        <div v-else>
-                            <h3>Could not find any saved albums...</h3>
-                        </div>
+                <div class="row">
+                    <div class="module favourites">
+                        <!-- favourites
+                                <hr>
+                                <div class="album-view">
+    
+                                </div> -->
+                        <h3>problems with loading?</h3>
+                        <hr>
+                        <br>
+                        <p>
+                            Juke does not use a server to play music, like Youtube or Spotify do. Because of this, it will never go down. But this also
+                            means there can be a delay
+                            <b>
+                                <u>when playing a song for this first time</u>
+                            </b>.
+                            <br>
+                            <br> Download speed is indicated by the health (
+                            <i class="fas fa-plus-square"></i> ) symbol, where higher health means faster downloads. Anything below
+                            <i class="fas fa-plus-square"></i> 30 will require patience. In this case, you should save the album and come back to it later.
+                        </p>
                     </div>
-                </div>
-
-
-                <!-- Playlists Page -->
-                <div v-if="page==='playlists'" class="playlists">
-                    <div class="playlist-header">
-                        <div class="buttons">
-
-                            <add-playlist></add-playlist>
-                            <div class="export button" v-on:click="exportAllPlaylists" title="export all playlists">
-                                <i class="far fa-share-square"></i>
-                                <input class="export-dest" directory webkitdirectory type="file" style="display: none">
-                            </div>
-
-                        </div>
-                        <div class="playlist-input">
-                            <transition name="fade">
-                                <playlist-input v-if="showPlaylistInput"></playlist-input>
-                            </transition>
-                        </div>
-                        <div class="file">
-                            <button v-on:click="importPlaylist">import playlist</button>
-                            <input type="file" multiple style="display: none" id="fileelem">
-                        </div>
-                    </div>
-                    <div class="playlist-body">
-                        
-                        <div v-if="playlists.length > 0">
-                            <ul>
-                                <playlist 
-                                v-for="(playlist, index) in playlists"
-                                :playlist="true"
-                                :album="playlist"
-                                :index="index"
-                                :key="index"></playlist>
-                            </ul>
-                        </div>
-                        <div v-else>
-                            <h3 class="none-found">You have no playlists. Import or create one.</h3>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- Account Page -->
-                <div v-if="page ==='account'" class="account">
-                    <!-- complete later -->
-                </div>
-
-                <!-- Selected Album view -->
-                <div v-if="albumIsSelected === true" class="album-playlist-view">
-                    <div class="back-button" v-on:click="albumIsSelected = false">
-                        <div>
-                            <h3>
-                                <i class="fas fa-caret-left"></i>
-                                back
-                            </h3>
-                    </div>
-                    </div>
-                    
-                    <selected-album 
-                        :album-title="selectedAlbum.title || selectedAlbum.linkName" 
-                        :artist="selectedAlbum.artist" 
-                        :flac="selectedAlbum.flac"
-                        :metadata="selectedAlbum.metadata"
-                        :cover-path="selectedAlbum.cover">
-                    </selected-album>
-
-                    <div class="bg-blur" :style="{ backgroundImage: 'url(' + selectedAlbum.cover + ')' }">
-
+                    <div class="module recents">
+                        <!-- recents
+                                <hr>
+                                <div class="album-view">
+    
+                                </div> -->
+                        <h3>legal</h3>
+                        <hr>
+                        <br>
+                        <p>
+                            As this application does not possess or distribute illegal content, it is perfectly legal. However, downloading illegal content
+                            is considered illegal in most countries.
+                            <b>
+                                <u>Use responsibly and support artists by buying their music</u>
+                            </b>.
+                        </p>
+                        <br>
+                        <br>
+                        <h3>please note</h3>
+                        <hr>
+                        <p>Since this is only the alpha version of juke,
+                            <b>
+                                <u>expect some bugs</u>
+                            </b>. These bugs will slowly get fixed as they become known.</p>
                     </div>
                 </div>
 
             </div>
+
+
+            <!-- Search Page -->
+            <div v-if="page ==='search'" class="searchPage">
+                <h1 class="search-text">{{searchQuery}}</h1>
+                <div class="module results">
+                    <div class="album-view" v-on:scroll="scrollHandler">
+                        <!-- <div class="loading-spinner" v-show="searchArray.length < 1">
+                                <div class="loading">
+                                    <h1>Loading</h1>
+                                </div>
+                            </div> -->
+                        <album-li v-for="(album, index) in sortedSearchArray" :key="album.id" :artist="album.artist" :album="album.title || album.linkName"
+                            :cover-path="album.cover" :link="album.link" :flac="album.flac" :health="album.health" :songs="album.songs"
+                            :album-object="album">
+                        </album-li>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Browse Albums page -->
+            <div v-if="page==='browse'" class="browse">
+                <div class="module">
+                    <div class="album-view" v-if="savedAlbums.length > 0">
+                        <album-li v-for="(album, index) in savedAlbums" :key="album.id" :artist="album.artist" :album="album.title || album.linkName"
+                            :cover-path="album.cover" :link="album.link" :flac="album.flac" :health="album.health" :songs="album.songs"
+                            :album-object="album">
+                        </album-li>
+                    </div>
+                    <div v-else>
+                        <h3>Could not find any saved albums...</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Playlists Page -->
+            <div v-if="page==='playlists'" class="playlists">
+                <div class="playlist-header">
+                    <div class="buttons">
+
+                        <add-playlist></add-playlist>
+                        <div class="export button" v-on:click="exportAllPlaylists" title="export all playlists">
+                            <i class="far fa-share-square"></i>
+                            <input class="export-dest" directory webkitdirectory type="file" style="display: none">
+                        </div>
+
+                    </div>
+                    <div class="playlist-input">
+                        <transition name="fade">
+                            <playlist-input v-if="showPlaylistInput"></playlist-input>
+                        </transition>
+                    </div>
+                    <div class="file">
+                        <button v-on:click="importPlaylist">import playlist</button>
+                        <input type="file" multiple style="display: none" id="fileelem">
+                    </div>
+                </div>
+                <div class="playlist-body">
+
+                    <div v-if="playlists.length > 0">
+                        <ul>
+                            <playlist v-for="(playlist, index) in playlists" :playlist="true" :album="playlist" :index="index" :key="index"></playlist>
+                        </ul>
+                    </div>
+                    <div v-else>
+                        <h3 class="none-found">You have no playlists. Import or create one.</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Account Page -->
+            <div v-if="page ==='account'" class="account">
+                <!-- complete later -->
+            </div>
+
+            <!-- Selected Album view -->
+            <div v-if="albumIsSelected === true" class="album-playlist-view">
+                <div class="back-button" v-on:click="albumIsSelected = false">
+                    <div>
+                        <h3>
+                            <i class="fas fa-caret-left"></i>
+                            back
+                        </h3>
+                    </div>
+                </div>
+
+                <selected-album :album-title="selectedAlbum.title || selectedAlbum.linkName" :artist="selectedAlbum.artist" :flac="selectedAlbum.flac"
+                    :metadata="selectedAlbum.metadata" :cover-path="selectedAlbum.cover">
+                </selected-album>
+
+                <div class="bg-blur" :style="{ backgroundImage: 'url(' + selectedAlbum.cover + ')' }">
+
+                </div>
+            </div>
+
         </div>
+    </div>
 
 
-        <script>
-            require('./renderer.js');
-        </script>
+    <script>
+        require('./renderer.js');
+    </script>
 </body>
 
 </html>

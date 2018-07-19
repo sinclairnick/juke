@@ -1,7 +1,6 @@
-module.exports = function(track){
-    let songs = track.$parent.$children.sort((a, b)=> {
-        return a.index - b.index
-    });
-    let songIndex = track.index;
-    global.juke.queue = songs.slice(songIndex + 1);
+module.exports = function (track) {
+
+    let songs = track.$parent.$children.sort((a, b) => a.index - b.index);
+    global.juke.queue = songs.slice(track.index + 1);
+
 }

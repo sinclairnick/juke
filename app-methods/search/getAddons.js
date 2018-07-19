@@ -7,7 +7,7 @@ let searchAddons = [];
 
 for (dir of addonsFolder) {
 
-    if(dir !== '.DS_Store'){
+    if(!dir.startsWith('.')){
         try {
             let fn = require(`./add-ons/${dir}/index.js`);
             searchAddons.push(fn);

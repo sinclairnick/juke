@@ -1,8 +1,7 @@
 module.exports = Vue.component('now-playing', {
     props: ['song', 'context', 'artist', 'coverPath', 'contextName'],
     template:
-        `  
-        <div class="now-playing">
+        `<div class="now-playing">
             <div class="np-text">
                 <div class="np-song" v-on:click="goToNowPlaying">
                         <h4>{{ contextName }}</h4>
@@ -13,7 +12,7 @@ module.exports = Vue.component('now-playing', {
         </div>
     `,
     methods: {
-        goToNowPlaying(){
+        goToNowPlaying() {
             global.juke.selectedAlbum = global.juke.nowPlaying.album;
             global.juke.albumIsSelected = true;
         }

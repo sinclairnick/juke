@@ -8,7 +8,7 @@ vinylNoise.volume = 0.6;
 
 //electron modules
 const { webFrame, remote } = require('electron');
-const {globalShortcut} = remote;
+const { globalShortcut } = remote;
 webFrame.setVisualZoomLevelLimits(1, 1);
 
 //config
@@ -40,34 +40,34 @@ const {
 
 //front page
 let featuredArray = [];
-try{featuredArray = JSON.parse(fs.readFileSync(path.join(__dirname, 'boot', 'featuredAlbums', 'albums.json'))) || []}
-catch(e){
-    
+try { featuredArray = JSON.parse(fs.readFileSync(path.join(__dirname, 'boot', 'featuredAlbums', 'albums.json'))) || [] }
+catch (e) {
+
 }
 
 //load playlists
 let playlists = [];
-try{playlists = JSON.parse(fs.readFileSync(path.join(__dirname, 'boot', 'playlists', 'playlists.json')))}
-catch(e){console.log(e)};
+try { playlists = JSON.parse(fs.readFileSync(path.join(__dirname, 'boot', 'playlists', 'playlists.json'))) }
+catch (e) { console.log(e) };
 
 //saved albums
 let savedAlbums = [];
 let savedAlbumFile = path.join(hpath, 'documents', 'juke_library', 'savedAlbums.json');
-if(!fs.existsSync(path.join(hpath, 'documents', 'juke_library'))){
+if (!fs.existsSync(path.join(hpath, 'documents', 'juke_library'))) {
     fs.mkdirSync(path.join(hpath, 'documents', 'juke_library'));
-    if(!fs.existsSync(path.join(hpath, 'documents', 'juke_library', 'music'))){
+    if (!fs.existsSync(path.join(hpath, 'documents', 'juke_library', 'music'))) {
         fs.mkdirSync(path.join(hpath, 'documents', 'juke_library', 'music'));
     }
 }
-if(!fs.existsSync(savedAlbumFile)){
-    try{
+if (!fs.existsSync(savedAlbumFile)) {
+    try {
         fs.writeFileSync(savedAlbumFile, JSON.stringify(savedAlbums))
     }
-    catch(e){
+    catch (e) {
         console.warn(e);
     }
 }
-else{
+else {
     savedAlbums = JSON.parse(fs.readFileSync(savedAlbumFile));
 }
 
@@ -90,9 +90,9 @@ globalShortcut.register('MediaNextTrack', playNext);
 globalShortcut.register('MediaPreviousTrack', playPrev);
 globalShortcut.register('MediaPlayPause', pauseUnpause);
 document.addEventListener('keyup', (e) => {
-    if(document.activeElement.tagName !== 'INPUT'){
+    if (document.activeElement.tagName !== 'INPUT') {
         e.preventDefault();
-        if(e.keyCode === 32){
+        if (e.keyCode === 32) {
             e.stopPropagation();
             pauseUnpause();
         }
@@ -154,7 +154,7 @@ global.juke = new Vue({
         sortedSearchArray() {
             if (this.searchArray) {
                 return this.searchArray.filter(item => item.health > 5)
-                .sort((a, b) => b.health - a.health);
+                    .sort((a, b) => b.health - a.health);
             }
         }
     }

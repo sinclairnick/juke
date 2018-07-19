@@ -1,31 +1,38 @@
-.row{
+.row {
     height: 50%;
     display: flex;
     padding: 10px;
     box-shadow: 0 5px 10px rgb(23, 23, 23);
 }
-.top{
+
+.top {
     padding-bottom: 0;
 }
-.module{
+
+.module {
     min-height: 100%;
-    background: linear-gradient( rgba(206, 254, 255, 0.803),rgb(202, 254, 253));
+    background: linear-gradient( rgba(206, 254, 255, 0.803), rgb(202, 254, 253));
     padding: 10px;
 }
-.featured{
+
+.featured {
     flex: 3;
 }
-.events{
+
+.events {
     flex: 1;
 }
-.favourites{
-    flex: 1;
-    overflow: scroll;
-}
-.recents{
+
+.favourites {
     flex: 1;
     overflow: scroll;
 }
-.results{
+
+.recents {
+    flex: 1;
+    overflow: scroll;
+}
+
+.results {
     flex: 1;
 }

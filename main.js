@@ -22,7 +22,7 @@ const template = [
         label: 'View',
         submenu: [
             { role: 'togglefullscreen' },
-            { role: 'toggledevtools'}
+            { role: 'toggledevtools' }
         ]
     },
     {
@@ -82,7 +82,7 @@ function createWindow() {
         icon: path.join(__dirname, 'img', 'icon.ico')
     })
 
-    win.on('close', ()=>{
+    win.on('close', () => {
         rimraf.sync(path.join(__dirname, 'tmp', 'torrents/*'), {});
     })
 

@@ -1,39 +1,47 @@
-.playlist-header{
+.playlist-header {
     width: 100%;
     height: 60px;
     background: linear-gradient(rgb(241, 241, 241), rgb(240, 240, 240));
     box-shadow: 0 0 10px grey inset;
     display: flex;
 }
-.playlist-body{
+
+.playlist-body {
     width: 100%;
     max-height: calc(100vh - 235px);
     overflow: scroll;
 }
-.playlists .buttons{
+
+.playlists .buttons {
     display: flex;
     justify-content: start;
     align-content: center;
     flex: 1;
 }
-.playlists .file{
+
+.playlists .file {
     display: flex;
     flex: 1;
 }
-.playlists .playlist-input{
+
+.playlists .playlist-input {
     flex: 2;
     display: flex;
 }
-.playlists .playlist-input input{
+
+.playlists .playlist-input input {
     width: 100%;
     align-self: center;
     justify-self: center;
     transition: 0.3s;
 }
-.playlists .playlist-input input:hover, .playlists .playlist-input input:focus{
+
+.playlists .playlist-input input:hover,
+.playlists .playlist-input input:focus {
     box-shadow: 0 0 5px grey inset;
 }
-.button{
+
+.button {
     height: 40px;
     width: 40px;
     margin: 10px 20px;
@@ -41,33 +49,41 @@
     justify-content: center;
     align-content: center;
 }
-.button i:before{
+
+.button i:before {
     line-height: 40px;
     font-size: 1.7rem;
     text-align: center;
     transition: 0.2s;
 }
-.playlists .button:hover{
+
+.playlists .button:hover {
     color: rgb(218, 218, 218);
 }
-.playlists h3{
+
+.playlists h3 {
     color: grey;
     padding: 20px;
     max-width: 600px;
 }
-.playlists .filter{
+
+.playlists .filter {
     height: 50px;
     align-self: center;
 }
-.filter input:hover, .filter input:focus{
+
+.filter input:hover,
+.filter input:focus {
     box-shadow: none;
 }
-.playlists .file{
+
+.playlists .file {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.playlists .file button{
+
+.playlists .file button {
     width: 200px;
     height: 30px;
     font-size: 1.2rem;
@@ -75,28 +91,33 @@
     border-radius: 5px;
     border: none;
     outline: none;
-    box-shadow: 0 0 15px rgba(70, 70, 70, 0.568) ;
+    box-shadow: 0 0 15px rgba(70, 70, 70, 0.568);
     background: rgba(255, 255, 255, 0.603);
     transition: 0.2s;
 }
-.playlists .file button:hover{
+
+.playlists .file button:hover {
     background: rgba(209, 255, 249, 0.603);
     color: rgb(128, 128, 128);
 }
-.playlists .playlist{
+
+.playlists .playlist {
     border-bottom: 1px solid rgba(255, 255, 255, 0.63);
     transition: 0.2s;
     max-height: 63px;
     display: grid;
     grid-template-columns: 1fr 80px;
 }
-.playlists .playlist:hover{
+
+.playlists .playlist:hover {
     background: rgb(77, 77, 77);
 }
-.playlist .title{
+
+.playlist .title {
     grid-column: 1 / span 1;
 }
-.playlist .ellipsis{
+
+.playlist .ellipsis {
     grid-column: 2 / span 2;
     display: flex;
     align-items: center;
@@ -105,10 +126,12 @@
     color: grey;
     transition: 0.2s;
 }
-.playlist .ellipsis:hover{
+
+.playlist .ellipsis:hover {
     color: rgb(189, 189, 189);
 }
-.playlist .options{
+
+.playlist .options {
     display: flex;
     align-items: center;
     position: absolute;
@@ -116,22 +139,28 @@
     height: 63px;
     color: rgb(165, 165, 165);
 }
+
 .playlist .options li {
     list-style: none;
     padding: 5px;
 }
-.playlist .options .export:hover, .playlist .options .delete:hover{
+
+.playlist .options .export:hover,
+.playlist .options .delete:hover {
     transition: 0.2s;
     color: rgb(231, 231, 231);
 }
-.track:hover .remove-playlist{
+
+.track:hover .remove-playlist {
     visibility: visible;
 }
-.remove-playlist{
+
+.remove-playlist {
     padding: 0 10px;
     visibility: hidden;
     transition: color 0.2s;
 }
-.remove-playlist:hover{
+
+.remove-playlist:hover {
     color: rgb(214, 214, 214);
 }

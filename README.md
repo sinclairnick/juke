@@ -12,7 +12,7 @@ Short-term to-do list:
 * convert css to sass (and generally clean up stylesheets
 * remove duplicates from search results
 * enable renaming playlists
-* optimize cached song downloads and decluttering storage
+* optimize cached song downloads and de-cluttering storage
 
 ...
 

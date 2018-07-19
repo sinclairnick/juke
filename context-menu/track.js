@@ -7,19 +7,6 @@ const path = require('path');
 let track;
 let playlistSubMenu = [];
 
-let template = [
-    {
-        label: 'Add to Queue',
-        click() {
-            addToQueue(track);
-        }
-    },
-    {
-        label: 'Add to Playlist',
-        submenu: playlistSubMenu
-    }
-]
-
 
 module.exports = function () {
 
@@ -51,21 +38,22 @@ module.exports = function () {
             }
         ]);
 
-        if(global.juke.selectedAlbum.playlist){
+        if (global.juke.selectedAlbum.playlist) {
             menu.append(new MenuItem({
                 label: 'Remove from playlist',
-            click(){
-                removeFromPlaylist(track);
-            }}))
+                click() {
+                    removeFromPlaylist(track);
+                }
+            }))
         }
 
 
-    menu.popup(remote.getCurrentWindow());
-}
+        menu.popup(remote.getCurrentWindow());
+    }
 
 }
 
-function addToPlaylist(track, index){
+function addToPlaylist(track, index) {
     global.juke.playlists[index].songs.push(track.info);
 
     fs.writeFileSync(path.join(__dirname, '..', 'boot', 'playlists', 'playlists.json'), JSON.stringify(global.juke.playlists));

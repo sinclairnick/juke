@@ -1,4 +1,4 @@
-.album-playlist-view{
+.album-playlist-view {
     position: absolute;
     top: 0;
     background: black;
@@ -9,7 +9,7 @@
     z-index: 10;
 }
 
-.selected-album{
+.selected-album {
     width: 100vw;
     max-height: 100%;
     max-width: 100%;
@@ -17,7 +17,8 @@
     overflow-y: scroll;
     color: rgb(199, 199, 199);
 }
-.selected-album .thumbnail{
+
+.selected-album .thumbnail {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,29 +29,36 @@
     text-align: center;
     z-index: 0;
 }
-.selected-album h4.artist, .selected-album h3.title {
+
+.selected-album h4.artist,
+.selected-album h3.title {
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.705);
 }
-.selected-album .track-number p{
+
+.selected-album .track-number p {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.698);
 }
-.selected-album .thumbnail img{
+
+.selected-album .thumbnail img {
     max-width: 300px;
     max-height: 300px;
     height: auto;
     width: auto;
 }
-.selected-album .tracks{
+
+.selected-album .tracks {
     flex: 7;
     margin: 30px;
     border-radius: 3px;
     padding-bottom: 20px;
 }
-.selected-album ul{
+
+.selected-album ul {
     list-style: none;
     width: 100%;
 }
-.selected-album .track{
+
+.selected-album .track {
     display: flex;
     padding: 20px;
     align-items: center;
@@ -60,11 +68,13 @@
     transition: box-shadow 0.2s;
     background: rgba(0, 0, 0, 0.164);
 }
-.selected-album .track:hover{
+
+.selected-album .track:hover {
     background: linear-gradient( rgba(223, 254, 255, 0.151), rgba(212, 255, 255, 0.116));
     box-shadow: 0 0 5px black inset;
 }
-.selected-album .track .track-number{
+
+.selected-album .track .track-number {
     flex: 0.5;
     padding: 1px;
     max-width: 18px;
@@ -77,18 +87,22 @@
     border: 1px solid rgba(149, 149, 149, 0.623);
     color: rgb(173, 173, 173);
 }
-.selected-album .track-name{
+
+.selected-album .track-name {
     flex: 20;
     text-overflow: ellipsis;
     text-indent: 10px;
 }
-.selected-album .track .duration{
+
+.selected-album .track .duration {
     flex: 2;
 }
-.selected-album .title{
+
+.selected-album .title {
     padding: 20px 0;
 }
-.bg-blur{
+
+.bg-blur {
     position: absolute;
     background-size: cover;
     background-position: 50%;
@@ -100,7 +114,8 @@
     filter: blur(20px);
     opacity: 0.6;
 }
-.save{
+
+.save {
     margin-top: 20px;
     font-size: 1.2rem;
 }

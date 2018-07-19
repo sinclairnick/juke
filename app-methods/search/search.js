@@ -5,10 +5,10 @@ module.exports = function (event) {
 
     global.juke.albumIsSelected = false;
 
-    //cache the previous search results
+    //cache previous search results
     cacheSearch(this.searchQuery);
 
-    //reset search results display
+    //reset search results
     this.searchArray = [];
     this.page = 'search';
     this.searchQuery = event.target.value.toLowerCase();
@@ -16,11 +16,7 @@ module.exports = function (event) {
 
 
     //display results if already in cache, or search and then display
-    let searchAlreadyCached = null;
-    
-    if(this.searchCache.length > 5){
-        searchAlreadyCached = this.searchCache.find(obj => obj.query === this.searchQuery);
-    }
+    let searchAlreadyCached = this.searchCache.find(obj => obj.query === this.searchQuery);
 
     if (searchAlreadyCached) {
         //serve cached search
@@ -28,30 +24,30 @@ module.exports = function (event) {
         console.log('Serving cached results');
     }
     else {
-        //search for the query and serve results
-        if(this.savedAlbums){
-            for(alb of this.savedAlbums){
-                for(word of this.searchQuery.split(' ')){
-                    try{
-                        if(alb.title.match(new RegExp(word, 'i')) || alb.artist.match(new RegExp(word, 'i'))){
-                            if(this.searchArray.indexOf(alb) < 0){
+        //search for the query in saved albums and web and serve results
+        if (this.savedAlbums) {
+            for (alb of this.savedAlbums) {
+                for (word of this.searchQuery.split(' ')) {
+                    try {
+                        if (alb.title.match(new RegExp(word, 'i')) || alb.artist.match(new RegExp(word, 'i'))) {
+                            if (this.searchArray.indexOf(alb) < 0) {
                                 this.searchArray.push(alb);
                             }
                         }
                     }
-                    catch(e){
+                    catch (e) {
                         console.log(e);
                     }
                 }
             }
         }
 
-        if(addons){
-            for(fn of addons){
-                try{
+        if (addons) {
+            for (fn of addons) {
+                try {
                     fn(this.searchQuery, this.searchArray);
                 }
-                catch(e){
+                catch (e) {
                     console.log(e);
                 }
             }
@@ -59,16 +55,16 @@ module.exports = function (event) {
 
     }
 
-    //check every 5 seconds to see if first page is filled with results
+    //check every X seconds to see if first page is filled with results
     let x = 10000;
     let int = setInterval(() => {
-        if(this.searchArray.length < 13){
+        if (this.searchArray.length < 13) {
             this.loadMore();
         }
-        else{
+        else {
             clearInterval(int);
         }
-        x*=1.2;
+        x *= 1.2;
     }, x);
 
 }

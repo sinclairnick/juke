@@ -3,7 +3,7 @@ const playNext = require('./playNext');
 
 module.exports = function () {
 
-    if(audioTag.src){
+    if (audioTag.src) {
         if (audioTag.paused) {
             audioTag.play();
         }
@@ -11,7 +11,7 @@ module.exports = function () {
             audioTag.pause();
         }
     }
-    else if(global.juke.queue.length > 0){
+    else if (global.juke.queue.length > 0) {
         playNext();
     }
 }

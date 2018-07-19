@@ -1,4 +1,5 @@
-module.exports = function(){
-    global.juke.playing = false;  
-      
+module.exports = function () {
+    
+    global.juke.playing = false;
+
 }

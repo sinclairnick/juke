@@ -1,7 +1,6 @@
 const { saveAlbum, removeAlbum } = require('../app-methods/index');
 require('./index').track;
 
-
 module.exports = Vue.component('selected-album', {
     props: ['albumTitle', 'artist', 'coverPath', 'flac', 'metadata'],
     template:
@@ -57,9 +56,9 @@ module.exports = Vue.component('selected-album', {
                 return arr;
             }
         },
-        isSaved(){
-            for( entry of this.savedAlbumMagnets){
-                if(global.juke.selectedAlbum.link === entry) return true;
+        isSaved() {
+            for (entry of this.savedAlbumMagnets) {
+                if (global.juke.selectedAlbum.link === entry) return true;
             }
         }
     },

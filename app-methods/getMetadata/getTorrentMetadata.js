@@ -1,7 +1,5 @@
 const torrentStream = require('torrent-stream');
 const musicMeta = require('music-metadata');
-
-
 const format = require('format-duration');
 const mime = require('mime-types');
 
@@ -34,6 +32,7 @@ module.exports = function (album) {
 
                 musicMeta.parseStream(stream, mimeType, { duration: true, fileSize: file.length })
                     .then((metadata) => {
+
                         iteratedFiles++;
 
                         if (metadata.common) {

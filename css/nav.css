@@ -1,6 +1,6 @@
 nav {
     width: 100vw;
-    background: linear-gradient( rgba(206, 254, 255, 0.803),rgb(202, 254, 253));
+    background: linear-gradient( rgba(206, 254, 255, 0.803), rgb(202, 254, 253));
     color: rgb(121, 121, 121);
     height: 100px;
     display: flex;
@@ -9,40 +9,48 @@ nav {
     z-index: 10;
 }
 
-nav ul{
+nav ul {
     display: flex;
     list-style: none;
 }
-nav ul > * {
+
+nav ul>* {
     display: inline-block;
     margin-left: 20px;
     transition: 0.3s;
 }
-nav ul > li{
+
+nav ul>li {
     height: 100%;
     align-self: center;
     display: flex;
     align-items: center;
     align-content: center;
 }
-#navform > *:hover{
+
+#navform>*:hover {
     color: rgb(43, 43, 43);
 }
-#logo{
+
+#logo {
     color: rgb(65, 65, 65);
     font-size: 30px;
     font-family: 'Merriweather', serif;
 }
-#logo:hover{
+
+#logo:hover {
     color: rgb(236, 255, 253);
 }
-ul#playlist-nav{
+
+ul#playlist-nav {
     display: none;
 }
-.nav-playlist-button:hover ul#playlist-nav{
+
+.nav-playlist-button:hover ul#playlist-nav {
     display: block;
 }
-ul#playlist-nav{
+
+ul#playlist-nav {
     position: absolute;
     padding-bottom: 15px;
     min-width: 200px;
@@ -55,7 +63,8 @@ ul#playlist-nav{
     overflow: scroll;
     background: linear-gradient(rgb(44, 44, 44), rgb(54, 54, 54));
 }
-ul#playlist-nav li{
+
+ul#playlist-nav li {
     display: block;
     top: 100px;
     width: 100%;
@@ -65,11 +74,13 @@ ul#playlist-nav li{
     color: rgb(190, 190, 190);
     border-bottom: 1px solid rgb(212, 212, 212);
 }
-ul#playlist-nav li:hover{
+
+ul#playlist-nav li:hover {
     background: rgb(170, 170, 170);
     color: black;
 }
-.search-bar{
+
+.search-bar {
     font-size: 20px;
     border-radius: 5px;
     border: none;
@@ -79,11 +90,13 @@ ul#playlist-nav li:hover{
     cursor: text;
     -webkit-app-region: no-drag;
 }
-.search-bar:focus{
+
+.search-bar:focus {
     color: rgb(96, 96, 150);
     box-shadow: 0 0 5px grey;
 }
-.right-nav{
+
+.right-nav {
     display: flex;
     position: absolute;
     align-items: center;
@@ -91,11 +104,13 @@ ul#playlist-nav li:hover{
     height: 100px;
     margin-right: 20px;
 }
-.right-nav ul li{
+
+.right-nav ul li {
     display: flex;
     align-items: center;
 }
-nav .art{
+
+nav .art {
     max-width: 70px;
     max-height: 70px;
     height: 70px;
@@ -111,66 +126,80 @@ nav .art{
     overflow: hidden;
     border: 20px solid black;
 }
-.playing{
+
+.playing {
     -webkit-animation-play-state: running;
     animation-play-state: running !important;
 }
+
 @keyframes spin {
-    to{
+    to {
         transform: rotate(360deg);
     }
 }
-#volume-slider{
+
+#volume-slider {
     transform: rotate(270deg);
     width: 60px;
     -webkit-app-region: no-drag;
 }
-nav .art img{
+
+nav .art img {
     min-width: 30px;
     max-height: 30px;
     height: 30px;
     width: auto;
 }
-@media (max-width: 1180px){
+
+@media (max-width: 1180px) {
     nav .now-playing {
         max-width: 200px;
     }
 }
-@media (min-width: 1181px) and (max-width: 1280px){
+
+@media (min-width: 1181px) and (max-width: 1280px) {
     nav .now-playing {
         max-width: 300px;
     }
 }
-@media (min-width: 1281px){
+
+@media (min-width: 1281px) {
     nav .now-playing {
         max-width: 380px;
     }
 }
-nav .now-playing{
+
+nav .now-playing {
     display: inline-block;
     overflow: hidden;
 }
-nav .now-playing > *{
+
+nav .now-playing>* {
     max-width: 400px;
     text-overflow: ellipsis;
 }
-nav .np-text > *{
+
+nav .np-text>* {
     transition: 0.3s;
 }
-nav .np-text h3{
+
+nav .np-text h3 {
     color: rgb(42, 42, 42);
     height: 30px;
     max-height: 25px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-nav .np-song:hover{
+
+nav .np-song:hover {
     opacity: 0.8;
 }
-nav .np-text h5:hover{
+
+nav .np-text h5:hover {
     color: rgb(47, 47, 47);
 }
-nav .queue-list{
+
+nav .queue-list {
     position: absolute;
     display: block !important;
     max-height: 400px;
@@ -179,22 +208,24 @@ nav .queue-list{
     top: 100px;
     background: linear-gradient(rgb(44, 44, 44), rgb(54, 54, 54));
     z-index: 20;
-    box-shadow: 
-    0px 2px 10px rgb(83, 83, 83);
+    box-shadow: 0px 2px 10px rgb(83, 83, 83);
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
 }
-nav .queue-list .header{
+
+nav .queue-list .header {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
-.shuffle{
+
+.shuffle {
     width: 100%;
     text-align: left;
     align-self: center;
     padding-left: 10px;
 }
-nav .queue-list .clear-queue{
+
+nav .queue-list .clear-queue {
     width: 100%;
     height: 30px;
     text-align: right;
@@ -202,39 +233,47 @@ nav .queue-list .clear-queue{
     z-index: 25;
     top: 120px;
 }
+
 nav .queue-list ul div {
     margin-left: 0 !important;
     width: 100%;
 }
-nav .queue-list ul{
+
+nav .queue-list ul {
     display: block;
     overflow: scroll;
     max-height: 360px;
 }
-nav ul li.queue-list-item{
+
+nav ul li.queue-list-item {
     min-width: 100%;
     display: grid;
     grid-template-columns: 1fr 30px;
     padding: 5px 10px;
     transition: box-shadow 0.2s, background 0s;
 }
-li.queue-list-item:hover{
+
+li.queue-list-item:hover {
     background: rgb(177, 177, 177);
     box-shadow: 0 0 5px rgb(44, 44, 44) inset;
 }
-li.queue-list-item:hover h4{
+
+li.queue-list-item:hover h4 {
     color: rgb(44, 44, 44);
 }
-.queue-list-item h4{
+
+.queue-list-item h4 {
     color: rgb(192, 192, 192);
     max-height: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.queue-list-item .track-info{
+
+.queue-list-item .track-info {
     grid-column: 1 / span 1;
 }
-.queue-list-item .delete-from-queue{
+
+.queue-list-item .delete-from-queue {
     align-self: center;
     justify-self: center;
     grid-column: 2 / span 1;
@@ -246,28 +285,39 @@ li.queue-list-item:hover h4{
     width: 30px;
     height: 30px;
 }
-.queue-list-item:hover .delete-from-queue{
+
+.queue-list-item:hover .delete-from-queue {
     visibility: visible;
 }
-.queue-list-item .delete-from-queue:hover{
+
+.queue-list-item .delete-from-queue:hover {
     color: rgb(214, 214, 214);
 }
-.fade-enter-active, .fade-leave-active {
+
+.fade-enter-active,
+.fade-leave-active {
     transition: opacity .2s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+
+.fade-enter,
+.fade-leave-to
+/* .fade-leave-active below version 2.1.8 */
+
+    {
     opacity: 0;
 }
-.queue-list-item h5{
+
+.queue-list-item h5 {
     color: rgb(109, 109, 109);
     max-height: 16px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-nav .list-logo{
+
+nav .list-logo {
     max-height: 30px;
     max-width: 30px;
-    height:auto;
+    height: auto;
     width: auto;
     transition: 0.4s;
 }

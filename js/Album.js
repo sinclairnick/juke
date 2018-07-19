@@ -19,12 +19,12 @@ module.exports = class Album {
 
         //extract file type
         let type = path.extname(fileName);
-        
-        if(type === '.flac'){
+
+        if (type === '.flac') {
             this.flac = true;
         }
 
-        //remove extention for display purposes
+        //remove extension for display purposes
         fileName = fileName.replace(type, '');
 
         this.songs.push({

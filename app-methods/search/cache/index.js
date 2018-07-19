@@ -1,9 +1,8 @@
 const checkCache = require('./checkCache.js');
 
 module.exports = function (lastSearch) {
-    
-    //add the existing query results to cache before running new search
 
+    //add the existing query results to cache before running new search
     if (global.juke.searchQuery) {
 
         global.juke.searchCache.push({
@@ -13,6 +12,6 @@ module.exports = function (lastSearch) {
         //remove first item of array, if [cacheSize] has been exceeded
         checkCache();
     }
-    
-        
+
+
 }

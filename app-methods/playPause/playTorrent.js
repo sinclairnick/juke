@@ -1,10 +1,8 @@
-const torrentStream = require('torrent-stream');
 const home = require('home-path')();
 const path = require('path');
 const audioTag = document.querySelector('audio#now-playing');
 const vinylNoise = document.querySelector('#vinyl-noise');
 const Promise = require('bluebird');
-const toBlobURL = Promise.promisify(require('stream-to-blob-url'));
 const WebTorrent = require('webtorrent');
 
 let client = new WebTorrent();
