@@ -12,8 +12,6 @@ const { globalShortcut } = remote;
 webFrame.setVisualZoomLevelLimits(1, 1);
 
 //config
-process.env.TMP_TORRENT = path.join(__dirname, 'tmp', 'torrents');
-process.env.TMP_IMG = path.join(__dirname, 'tmp', 'img');
 
 //app methods
 const {
