@@ -10,6 +10,7 @@ This was made for demo purposes only. Please support artists and the music indus
 ---
 
 Short-term to-do list:
+* implement promise cancellation on playing music
 * convert css to sass (and generally clean up stylesheets
 * remove duplicates from search results
 * enable renaming playlists
