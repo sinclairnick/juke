@@ -60,7 +60,7 @@
                 <div class="right-nav vert-center" v-on:mouseleave="showQueue = false, showHistory = false">
                     <ul id="nav-ul">
                         <li>
-                            <now-playing-art v-if="nowPlaying" :cover-path="nowPlaying.album.cover" :playing="playing">
+                            <now-playing-art v-if="nowPlaying" :cover-path="nowPlaying.album.cover || 'img/default-thumbnail.png' " :playing="playing">
                             </now-playing-art>
                         </li>
                         <li>
@@ -93,7 +93,6 @@
 
         <div class="player">
 
-            <!-- need to increase the hoverable area of the progress bar -->
 
             <div class="play-bar" v-on:click="seek">
                 <div class="buffered-bar">
@@ -168,7 +167,7 @@
                         <hr>
                         <div class="featured-albums" id="featured-albums">
                             <album-li v-for="(album, index) in featuredArray" :key="album.id" :artist="album.artist" :album="album.title || album.linkName"
-                                :cover-path="album.cover" :link="album.link" :flac="album.flac" :health="album.health" :songs="album.songs"
+                                :cover-path="album.cover || 'img/default-thumbnail.png'  || 'img/default-thumbnail.png' " :link="album.link" :flac="album.flac" :health="album.health" :songs="album.songs"
                                 :album-object="album">
                             </album-li>
                         </div>
@@ -244,13 +243,8 @@
                 <h1 class="search-text">{{searchQuery}}</h1>
                 <div class="module results">
                     <div class="album-view" v-on:scroll="scrollHandler">
-                        <!-- <div class="loading-spinner" v-show="searchArray.length < 1">
-                                <div class="loading">
-                                    <h1>Loading</h1>
-                                </div>
-                            </div> -->
                         <album-li v-for="(album, index) in sortedSearchArray" :key="album.id" :artist="album.artist" :album="album.title || album.linkName"
-                            :cover-path="album.cover" :link="album.link" :flac="album.flac" :health="album.health" :songs="album.songs"
+                            :cover-path="album.cover || 'img/default-thumbnail.png' " :link="album.link" :flac="album.flac" :health="album.health" :songs="album.songs"
                             :album-object="album">
                         </album-li>
                     </div>
@@ -266,7 +260,7 @@
                 <div class="module">
                     <div class="album-view" v-if="savedAlbums.length > 0">
                         <album-li v-for="(album, index) in savedAlbums" :key="album.id" :artist="album.artist" :album="album.title || album.linkName"
-                            :cover-path="album.cover" :link="album.link" :flac="album.flac" :health="album.health" :songs="album.songs"
+                            :cover-path="album.cover || 'img/default-thumbnail.png' " :link="album.link" :flac="album.flac" :health="album.health" :songs="album.songs"
                             :album-object="album">
                         </album-li>
                     </div>
@@ -330,10 +324,11 @@
                 </div>
 
                 <selected-album :album-title="selectedAlbum.title || selectedAlbum.linkName" :artist="selectedAlbum.artist" :flac="selectedAlbum.flac"
-                    :metadata="selectedAlbum.metadata" :cover-path="selectedAlbum.cover">
+                    :metadata="selectedAlbum.metadata" :cover-path="selectedAlbum.cover || 'img/default-thumbnail.png' ">
                 </selected-album>
 
-                <div class="bg-blur" :style="{ backgroundImage: 'url(' + selectedAlbum.cover + ')' }">
+                <div v-if="selectedAlbum.cover" class="bg-blur" :style="{ background: 'url(' + selectedAlbum.cover + ')' }">
+                <div v-else class="bg-blur" :style="{ background: 'black' }">
 
                 </div>
             </div>

@@ -69,7 +69,7 @@ function createWindow() {
 
     Menu.setApplicationMenu(menu)
 
-    // BrowserWindow.addDevToolsExtension(path.join('.', '.vue-devtools', '4.1.4_0'));
+    BrowserWindow.addDevToolsExtension(path.join('.vue-devtools', '4.1.4_0'));
 
     win = new BrowserWindow({
         width: 1080,
@@ -93,6 +93,8 @@ function createWindow() {
     win.on('ready-to-show', () => {
         win.show();
     })
+
+    win.webContents.toggleDevTools();
 
 
     win.loadFile(path.join('.', 'index.html'));

@@ -1,13 +1,12 @@
-const juke = require('../../renderer');
-const addons = require('./getAddons');
+const mag = require('magnetic-music');
 
 module.exports = function () {
-    //searches without resetting any state, and incrememnts page number
+    //searches without resetting any state, and increments page number
 
     this.pageNumber++;
-    if (addons) {
-        for (fn of addons) {
-            fn(this.searchQuery, this.searchArray, this.pageNumber);
-        }
-    }
+    mag({
+        query: this.searchQuery,
+        array: this.searchArray,
+        page: this.pageNumber
+    })
 }

@@ -1,5 +1,6 @@
 const cacheSearch = require('./cache/index');
-const addons = require('./getAddons');
+const mag = require('magnetic-music');
+
 
 module.exports = function (event) {
 
@@ -15,21 +16,22 @@ module.exports = function (event) {
     this.pageNumber = 1;
 
 
-    //display results if already in cache, or search and then display
     let searchAlreadyCached = this.searchCache.find(obj => obj.query === this.searchQuery);
-
+    
+    //display results if already in cache
     if (searchAlreadyCached) {
         //serve cached search
         this.searchArray = searchAlreadyCached.results;
         console.log('Serving cached results');
     }
+    //or search and then display
     else {
         //search for the query in saved albums and web and serve results
         if (this.savedAlbums) {
             for (alb of this.savedAlbums) {
                 for (word of this.searchQuery.split(' ')) {
                     try {
-                        if (alb.title.match(new RegExp(word, 'i')) || alb.artist.match(new RegExp(word, 'i'))) {
+                        if (( alb.title && alb.title.match(new RegExp(word, 'i')) ) || ( alb.artist && alb.artist.match(new RegExp(word, 'i'))) ){
                             if (this.searchArray.indexOf(alb) < 0) {
                                 this.searchArray.push(alb);
                             }
@@ -42,16 +44,10 @@ module.exports = function (event) {
             }
         }
 
-        if (addons) {
-            for (fn of addons) {
-                try {
-                    fn(this.searchQuery, this.searchArray);
-                }
-                catch (e) {
-                    console.log(e);
-                }
-            }
-        }
+        mag({
+            query: this.searchQuery,
+            array: this.searchArray
+        });
 
     }
 
