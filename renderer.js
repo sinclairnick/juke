@@ -13,6 +13,7 @@ webFrame.setVisualZoomLevelLimits(1, 1);
 
 //config
 
+
 //app methods
 const {
     search,

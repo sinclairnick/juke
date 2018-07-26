@@ -82,10 +82,6 @@ function createWindow() {
         icon: path.join(__dirname, 'img', 'icon.ico')
     })
 
-    win.on('close', () => {
-        rimraf.sync(path.join(__dirname, 'tmp', 'torrents/*'), {});
-    })
-
     win.on('closed', () => {
         win = null;
     })
