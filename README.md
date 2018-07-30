@@ -14,6 +14,7 @@ juke is  music torrent streamer and downloader - like Spotify for the pirate bay
 ```javascript
 git clone https://github.com/sinclairnick/juke.git
 cd juke
+npm i
 npm start
 ```
 
