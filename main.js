@@ -91,7 +91,8 @@ function createWindow() {
         win.show();
     })
 
-    win.webContents.toggleDevTools();
+    //uncomment to enable devtools
+    // win.webContents.toggleDevTools();
 
     win.on('close', ()=>{
         rimraf.sync(path.join(os.tmpdir(), 'juke-tmp', '*'), {});
