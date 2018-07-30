@@ -1,11 +1,20 @@
 # juke
 torrent music streaming app (prototype)
 
+![home](img/readme/home.png "juke Home Screen")
+
 *At the moment, juke is in its infancy. The current code is not optimized yet, but will gradually become so as I get time to update, or others contribute to cleaning up the code.*
 
 juke is  music torrent streamer and downloader - like Spotify for the pirate bay.
 
 *This was made for demo purposes only. Please support artists and the music industry.*
+
+## Usage
+```javascript
+git clone https://github.com/sinclairnick/juke.git
+cd juke
+npm start
+```
 
 ---
 
@@ -21,10 +30,7 @@ Long-term to-do list:
 
 ---
 
-## Images:
-
-### Home Screen
-![home](img/readme/home.png "juke Home Screen")
+## More Images:
 
 ### Saved Albums
 ![saved albums](img/readme/saved-albums.png "juke Saved Albums Page")

@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const _ = require('lodash');
 const hpath = require('home-path')();
+const os = require('os');
 
 const vinylNoise = document.querySelector('#vinyl-noise');
 vinylNoise.volume = 0.6;
@@ -12,7 +13,7 @@ const { globalShortcut } = remote;
 webFrame.setVisualZoomLevelLimits(1, 1);
 
 //config
-
+process.env.TMP_TORRENTS = path.join(os.tmpdir(), 'juke-tmp');
 
 //app methods
 const {

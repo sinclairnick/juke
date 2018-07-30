@@ -1,6 +1,7 @@
 const { app, BrowserWindow, Menu } = require('electron');
 const rimraf = require('rimraf');
 const path = require('path');
+const os = require('os');
 let win;
 
 const template = [
@@ -91,6 +92,10 @@ function createWindow() {
     })
 
     win.webContents.toggleDevTools();
+
+    win.on('close', ()=>{
+        rimraf.sync(path.join(os.tmpdir(), 'juke-tmp', '*'), {});
+    })
 
 
     win.loadFile(path.join('.', 'index.html'));
