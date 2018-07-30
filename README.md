@@ -1,3 +1,4 @@
+![logo](img/icon.png "logo")
 # juke
 torrent music streaming app (prototype)
 
