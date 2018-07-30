@@ -153,8 +153,7 @@ global.juke = new Vue({
     computed: {
         sortedSearchArray() {
             if (this.searchArray) {
-                return this.searchArray.filter(item => item.health > 5)
-                    .sort((a, b) => b.health - a.health);
+                return this.searchArray.sort((a, b) => b.health - a.health);
             }
         }
     }
